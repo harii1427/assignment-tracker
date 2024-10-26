@@ -1,0 +1,70 @@
+<!-- teacher_dashboard.html -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Assignment Tracker</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1>Welcome, {{ teacher.username }}</h1>
+        <h2>Assignments</h2>
+        <ul>
+            {% for student in students %}
+            <li>
+                <strong>{{ student.username }}</strong>
+                <form action="{{ url_for('assign_assignment', teacher_username=teacher.username, student_username=student.username) }}" method="post" enctype="multipart/form-data">
+                    <label for="assignment">Assignment PDF:</label>
+                    <input type="file" id="assignment" name="assignment" accept=".pdf">
+                    <button type="submit">Assign</button>
+                </form>
+                <br>
+                <ul>
+                    {% for assignment in student.assignments %}
+                    <li>{{ assignment }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <footer class="bg-dark text-light text-center mt-5 py-3">
+        Assignment Tracker &copy; 2024
+    </footer>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+</head>
+<body>
+   
+</body>
+</html>

@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        /* Custom CSS styles for student_dashboard.html */
+        .list-group {
+            margin-top: 20px;
+        }
+    
+        /* Custom CSS styles for teacher_dashboard.html */
+        .card {
+            margin-bottom: 20px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Assignment Tracker</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h1>Welcome, {{ student.username }}</h1>
+    <h2>Your Assignments:</h2>
+    <ul>
+        {% for assignment in student.assignments %}
+            <li><a href="{{ url_for('download_file', filename= assignment ) }}">{{ assignment }}</a></li>
+        {% endfor %}
+    </ul>
+    </div>
+
+    <footer class="bg-dark text-light text-center mt-5 py-3">
+        Assignment Tracker &copy; 2024
+    </footer>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
